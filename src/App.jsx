@@ -67,61 +67,55 @@ function App() {
   };
 
   // - 3. WHAT THE USER SEES (UI) -
-  return (
-    <div style={{ maxWidth: '600px', margin: '50px auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1 style={{ textAlign: 'center', lineHeight: '1.4', marginBottom: '20px' }}>
-  🔒 Zero-Knowledge Secret Sharer
-</h1>
+return (
+    <div className="app-container">
+      <h1 className="main-title">
+        <span className="lock-icon">🔒</span> Zero-Knowledge Secret Sharer
+      </h1>
       
-      {/* View Mode: If the user opened a secret link */}
       {decryptedSecret ? (
-        <div style={{ backgroundColor: '#ffebee', padding: '20px', borderRadius: '8px', border: '1px solid #ef9a9a' }}>
-          <h2 style={{ color: '#c62828', marginTop: 0 }}>Your Secret Message:</h2>
-          <p style={{ fontWeight: 'bold' }}>⚠️ Warning: This message has just been permanently deleted from the database. If you refresh this page, it will be gone forever.</p>
+        <div className="card view-card">
+          <h2 className="warning-title">Your Secret Message:</h2>
+          <p className="warning-text">
+            ⚠️ Warning: This message has just been permanently deleted from the database. If you refresh this page, it will be gone forever.
+          </p>
           <textarea 
             readOnly 
             value={decryptedSecret} 
             rows="6" 
-            style={{ width: '100%', padding: '10px', fontSize: '16px', boxSizing: 'border-box' }} 
+            className="secret-textarea"
           />
-          <button 
-            onClick={() => window.location.href = '/'} 
-            style={{ marginTop: '15px', padding: '10px 15px', cursor: 'pointer' }}
-          >
+          <button onClick={() => window.location.href = '/'} className="btn primary-btn mt-15">
             Create Your Own Secret
           </button>
         </div>
       ) : (
-        /* Create Mode: If the user is on the homepage making a secret */
-        <div style={{ backgroundColor: '#f5f5f5', padding: '20px', borderRadius: '8px', border: '1px solid #e0e0e0' }}>
-          <p>Type your highly sensitive data below. It will be encrypted in your browser before it ever touches our servers.</p>
+        <div className="card create-card">
+          <p className="subtitle">
+            Type your highly sensitive data below. It will be encrypted in your browser before it ever touches our servers.
+          </p>
           <textarea 
             value={secret} 
             onChange={(e) => setSecret(e.target.value)} 
             rows="5" 
             placeholder="Enter passwords, API keys, or private notes here..."
-            style={{ width: '100%', padding: '10px', fontSize: '16px', boxSizing: 'border-box', marginBottom: '15px' }}
+            className="secret-textarea"
           />
-          <button 
-            onClick={handleCreateSecret} 
-            disabled={loading}
-            style={{ width: '100%', padding: '12px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px', fontSize: '16px', cursor: 'pointer' }}
-          >
+          <button onClick={handleCreateSecret} disabled={loading} className="btn primary-btn">
             {loading ? 'Encrypting & Saving...' : 'Encrypt & Generate One-Time Link'}
           </button>
 
-          {/* Show the link after they click the button */}
           {shareLink && (
-            <div style={{ marginTop: '20px', padding: '15px', backgroundColor: '#e8f5e9', border: '1px solid #a5d6a7', borderRadius: '4px' }}>
-              <p style={{ margin: '0 0 10px 0', fontWeight: 'bold', color: '#2e7d32' }}>✅ Success! Share this link securely:</p>
+            <div className="success-box">
+              <p className="success-title">✅ Success! Share this link securely:</p>
               <input 
                 type="text" 
                 readOnly 
                 value={shareLink} 
-                style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }} 
+                className="link-input"
                 onClick={(e) => e.target.select()}
               />
-              <p style={{ fontSize: '12px', color: '#666', marginTop: '5px' }}>The key is in the URL. If you lose this link, the data cannot be recovered.</p>
+              <p className="success-hint">The key is in the URL. If you lose this link, the data cannot be recovered.</p>
             </div>
           )}
         </div>
