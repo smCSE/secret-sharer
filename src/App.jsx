@@ -69,7 +69,9 @@ function App() {
   // - 3. WHAT THE USER SEES (UI) -
   return (
     <div style={{ maxWidth: '600px', margin: '50px auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1 style={{ textAlign: 'center' }}>🔒 Zero-Knowledge Secret Sharer</h1>
+      <h1 style={{ textAlign: 'center', lineHeight: '1.4', marginBottom: '20px' }}>
+  🔒 Zero-Knowledge Secret Sharer
+</h1>
       
       {/* View Mode: If the user opened a secret link */}
       {decryptedSecret ? (
