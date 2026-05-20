@@ -106,7 +106,7 @@ function App() {
       {isExpired ? (
         <div style={{ backgroundColor: '#212121', padding: '30px 20px', borderRadius: '8px', border: '2px solid #000', textAlign: 'center' }}>
            <h2 style={{ color: '#ff5252', marginTop: 0, fontSize: '32px' }}>💥 BOOM.</h2>
-           <p style={{ color: '#fff', fontSize: '16px', lineHeight: '1.5' }}>The 10 seconds are up.<br/>This message has been permanently wiped from the database and your screen.</p>
+           <p style={{ color: '#fff', fontSize: '16px', lineHeight: '1.5' }}>This message has been permanently wiped out.</p>
            <button 
             onClick={() => window.location.href = '/'} 
             style={{ marginTop: '20px', padding: '12px 20px', cursor: 'pointer', backgroundColor: '#333', color: 'white', border: '1px solid #555', borderRadius: '4px' }}
@@ -119,9 +119,9 @@ function App() {
       ) : decryptedSecret ? (
         <div style={{ backgroundColor: '#ffebee', padding: '20px', borderRadius: '8px', border: '1px solid #ef9a9a' }}>
           
-          <h2 style={{ color: '#c62828', marginTop: 0, marginBottom: '10px' }}>Your Secret Message:</h2>
+          <h2 style={{ color: '#c62828', marginTop: 0, marginBottom: '10px' }}>Your Message:</h2>
           
-          <p style={{ fontWeight: 'bold', color: '#b71c1c' }}>⚠️ Read fast. This message will automatically self-destruct in 10 seconds.</p>
+          <p style={{ fontWeight: 'bold', color: '#b71c1c' }}>We are committed to Provide Privacy</p>
           
           <textarea 
             readOnly 
@@ -134,12 +134,12 @@ function App() {
       /* Create Mode: The Homepage */
       ) : (
         <div style={{ backgroundColor: '#f5f5f5', padding: '20px', borderRadius: '8px', border: '1px solid #e0e0e0' }}>
-          <p>Type your highly sensitive data below. It will be encrypted in your browser before it ever touches our servers.</p>
+          <p>Type your text data below. It will be encrypted in your browser before it ever touches our servers.</p>
           <textarea 
             value={secret} 
             onChange={(e) => setSecret(e.target.value)} 
             rows="5" 
-            placeholder="Enter passwords, API keys, or private notes here..."
+            placeholder="Enter your message here..."
             style={{ width: '100%', padding: '10px', fontSize: '16px', boxSizing: 'border-box', marginBottom: '15px' }}
           />
           <button 
