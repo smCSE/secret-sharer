@@ -9,8 +9,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   
-  // --- TIMER STATE ---
-  const [timeLeft, setTimeLeft] = useState(15);
+  // --- TIMER STATE (Updated to 10 seconds) ---
+  const [timeLeft, setTimeLeft] = useState(10);
   const [isExpired, setIsExpired] = useState(false);
 
   // - 1. THE PAGE LOAD CHECK AND BURN -
@@ -54,7 +54,7 @@ function App() {
       return () => clearTimeout(timeoutId);
     }
 
-    // 3. If we still have time, keep ticking.
+    // 3. If we still have time, keep ticking (invisible to user).
     if (timeLeft > 0 && !isExpired) {
       const timerId = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
@@ -106,7 +106,7 @@ function App() {
       {isExpired ? (
         <div style={{ backgroundColor: '#212121', padding: '30px 20px', borderRadius: '8px', border: '2px solid #000', textAlign: 'center' }}>
            <h2 style={{ color: '#ff5252', marginTop: 0, fontSize: '32px' }}>💥 BOOM.</h2>
-           <p style={{ color: '#fff', fontSize: '16px', lineHeight: '1.5' }}>The 15 seconds are up.<br/>This message has been permanently wiped from the database and your screen.</p>
+           <p style={{ color: '#fff', fontSize: '16px', lineHeight: '1.5' }}>The 10 seconds are up.<br/>This message has been permanently wiped from the database and your screen.</p>
            <button 
             onClick={() => window.location.href = '/'} 
             style={{ marginTop: '20px', padding: '12px 20px', cursor: 'pointer', backgroundColor: '#333', color: 'white', border: '1px solid #555', borderRadius: '4px' }}
@@ -115,16 +115,14 @@ function App() {
           </button>
         </div>
 
-      /* View Mode 2: Viewing the active secret */
+      /* View Mode 2: Viewing the active secret (Invisible Timer) */
       ) : decryptedSecret ? (
         <div style={{ backgroundColor: '#ffebee', padding: '20px', borderRadius: '8px', border: '1px solid #ef9a9a' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
-            <h2 style={{ color: '#c62828', marginTop: 0, marginBottom: '10px' }}>Your Secret Message:</h2>
-            <span style={{ fontSize: '22px', fontWeight: 'bold', color: timeLeft <= 5 ? '#d32f2f' : '#333', marginBottom: '10px' }}>
-              ⏱️ 00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft}
-            </span>
-          </div>
-          <p style={{ fontWeight: 'bold', color: '#b71c1c' }}>⚠️ Read fast. This message will self-destruct from this screen when the timer hits zero.</p>
+          
+          <h2 style={{ color: '#c62828', marginTop: 0, marginBottom: '10px' }}>Your Secret Message:</h2>
+          
+          <p style={{ fontWeight: 'bold', color: '#b71c1c' }}>⚠️ Read fast. This message will automatically self-destruct in 10 seconds.</p>
+          
           <textarea 
             readOnly 
             value={decryptedSecret} 
